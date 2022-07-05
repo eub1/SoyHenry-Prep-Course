@@ -1,0 +1,2 @@
+let saludo = 'hi there';
+
