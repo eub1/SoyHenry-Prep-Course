@@ -130,15 +130,18 @@ function imprimePares(n) {
       console.log(i);
     }
     if ( i > 30) {
+      for(var j=0; j < 15 ; j+2) {
+        console.log(j);
+      }
  return;
     }
   }
 }
 
-
-
-
+Los for() se pueden anidar, se crea la var j porque ya existe la i.
 */
+
+
 function esImpar(num) {
   // Devuelve "true" si "num" es impar
   // De lo contrario, devuelve "false"

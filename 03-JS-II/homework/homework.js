@@ -1,3 +1,97 @@
+
+
+// ----------- MIS APUNTES --------------
+
+/*
+Si yo quiero que me devuela todos los numeros pares, de un ciclo de 1 a 100, entonces escribo:
+
+function imprimePares(n) {
+  for (var i = 1; i <=n); i++) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+    if ( i > 30) {
+      for(var j=0; j < 15 ; j+2) {
+        console.log(j);
+      }
+ return;
+    }
+  }
+}
+
+Los for() se pueden anidar, se crea la var j porque ya existe la i.
+*/
+// BUCLE - TABLAS
+
+// n filas
+// m columnas
+
+/* 
+function matriz(n,m) {
+  for(var i = 0; i < n; i++){
+    for( var j = 0; j < m; j++){
+      console.log(i + "," + j);
+    }
+  }
+}
+
+    0123
+
+0   1234
+1   5678
+2   9123
+
+ij
+00
+01
+02
+03
+10
+11
+12
+
+*/
+
+// ---------- BUCLE WHILE ------------
+/* 
+while(condicion) {
+  bloque de codigo
+}
+
+var i = 0;
+while (i < 100) {
+  console.log(i);
+  i++;
+}
+
+// clave: al final incrementar i, porque sino se hace un bucle infinito de imprimir 0
+
+Ejemplo matriz:
+
+function otraMatriz (n,m) {
+  var j = 0;
+  var i = 0;
+  while (i < n) {
+    while (j < m) {
+      console.log(i,j);
+      j++;
+    }
+    j = 0;
+    i++;
+  }
+
+}
+
+ j = 0;  // porque sino termina antes el loop, j llega a 2 al toque y no sigue //
+
+
+ bucles: entonces inicializar la variable (i =0, poner donde para ( i < n), y se pone el paso siguiente (i++))
+*/
+
+
+
+// ------Aca Empieza el homework---------
+
 // No cambies los nombres de las funciones.
 
 function obtenerMayor(x, y) {
@@ -5,6 +99,10 @@ function obtenerMayor(x, y) {
   // Devuelve el número más grande
   // Si son iguales, devuelve cualquiera de los dos
   // Tu código:
+  if (x >= y) {
+    return x || y;
+  }
+  return y || x;
 }
 
 function mayoriaDeEdad(edad) {
