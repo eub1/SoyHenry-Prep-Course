@@ -121,7 +121,24 @@ function esPar(num) {
    } return false;
   }
 
+/*
+En estos ej. me devuelve un valor booleano, true o false. Ahora si yo quiero que me devuela todos los numeros pares, de un ciclo de 1 a 100, entonces escribo:
 
+function imprimePares(n) {
+  for (var i = 1; i <=n); i++) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+    if ( i > 30) {
+ return;
+    }
+  }
+}
+
+
+
+
+*/
 function esImpar(num) {
   // Devuelve "true" si "num" es impar
   // De lo contrario, devuelve "false"
