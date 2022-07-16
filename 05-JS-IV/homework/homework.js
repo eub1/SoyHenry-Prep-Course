@@ -34,14 +34,14 @@ function invocarMetodo (objeto, metodo) {
   // Invoca ese método
   // Nada necesita ser devuelto ("returned")
   // Tu código:
-  objeto.metodo();
+  objeto[metodo]();
 }
 
 function multiplicarNumeroDesconocidoPorCinco (objetoMisterioso) {
   // "objetoMisterioso" tiene una propiedad llamada "numeroMisterioso"
   // Multiplica el numeroMisterioso por 5 y devuelve el producto
   // Tu código:
-objetoMisterioso["numeroMisterioso"]= ["numeroMisterioso"]*5;
+objetoMisterioso["numeroMisterioso"]= objetoMisterioso["numeroMisterioso"]*5;
 return objetoMisterioso["numeroMisterioso"];
 }
 
@@ -50,7 +50,7 @@ function eliminarPropiedad (objeto, unaPropiedad) {
   // tip: tenes que usar bracket notation
   // Devuelve el objeto
   // Tu código:
-  delete objeto["unaPropiedad"];
+  delete objeto[unaPropiedad];
   return objeto;
 }
 
@@ -58,10 +58,11 @@ function nuevoUsuario (nombre, email, password) {
   // Crea un nuevo objeto con las propiedades coincidiendo con los argumentos que se pasan a la función
   // Devuelve el objeto
   // Tu código:
-  let objetoUsuario
-  objetoUsuario["nombre"]= nombre;
-  objetoUsuario["email"]= email;
-  objetoUsuario["password"]= password;
+  const objetoUsuario = { };
+  objetoUsuario["nombre"]= nombre
+  objetoUsuario["email"]= email
+  objetoUsuario["password"]= password
+
   return objetoUsuario;
 
 }
@@ -70,7 +71,10 @@ function tieneEmail (usuario) {
   // Devuelve "true" si el usuario tiene un valor definido para la propiedad "email"
   // De lo contratio, devuelve "false"
   // Tu código:
-  return usuario.hasOwnProperty("email");
+
+  if (usuario["email"]) {return true}  // la condicion evalua un boolean, si se cumple, entonces devuelve true (si reemplazo usuario["email"], entonces si tuviera un valor que no sea null o undefined, seria un boolean true)
+  else return false ; 
+  
 }
 
 function tienePropiedad (objeto, propiedad) {
@@ -78,6 +82,7 @@ function tienePropiedad (objeto, propiedad) {
   // "propiedad" es un string
   // De lo contrario, devuelve "false"
   // Tu código:
+  return objeto.hasOwnProperty([propiedad])
 
 }
 
@@ -87,14 +92,16 @@ function verificarPassword (usuario, password) {
   // De lo contrario, devuelve "false"
   // Tu código:
 
+return usuario["password"] === password;  // tiene que ir con [" "]
 
+// return usuario.password === password
 }
 
 function actualizarPassword (usuario, nuevaPassword) {
   // Reemplaza la contraseña existente en el objeto "usuario" con el valor de "nuevagPassword"
   // Devuelve el objeto
   // Tu código:
-  usuario["nuevaPassword"] = "nuevagPassword";
+  usuario["password"] = nuevaPassword;  // no indican cual es la propiedad que contiene el valor para la contraseña (supuse que era password, y con Password me daba error. En la consigna esta mal escrito "nuevagPassword", es el parametro dado)
   return usuario;
 }
 
@@ -103,7 +110,7 @@ function agregarAmigo (usuario, nuevoAmigo) {
   // Agrega "nuevoAmigo" al final de ese array
   // Devuelve el objeto "usuario"
   // Tu código:
-  usuario["amigos"].push("nuevoAmigo")
+  usuario["amigos"].push(nuevoAmigo)
   return usuario
 }
 
@@ -113,6 +120,15 @@ function pasarUsuarioAPremium (usuarios) {
   // Define cada propiedad "esPremium" de cada objeto como "true"
   // Devuelve el array de usuarios
   // Tu código:
+ // usuarios = [usuario={"esPremium"}, usuario={'esPremium'}]
+
+for (i=0; i < usuarios.length; i++ ){
+
+  usuarios[i]['esPremium'] = true             // al pasar por cada obejto, en propiedad esPremium, le asignamos el valor true
+ 
+}
+
+return usuarios;
 }
 
 function sumarLikesDeUsuario (usuario) {
@@ -122,6 +138,15 @@ function sumarLikesDeUsuario (usuario) {
   // Suma todos los likes de todos los objetos "post"
   // Devuelve la suma
   // Tu código:
+
+  // usuario = {
+  //  posts: [post={ likes: num}, post={ likes: num}] }
+  let suma = 0
+for(let i =0; i < usuario.posts.length; i++){    // el array sobre el que itero, es el usuario.posts (usuario solo es un objeto)
+
+  suma = usuario['posts'][i]['likes'] + suma;
+}
+return suma;
 }
 
 function agregarMetodoCalculoDescuento (producto) {
@@ -135,6 +160,15 @@ function agregarMetodoCalculoDescuento (producto) {
   // producto.calcularPrecioDescuento() -> 20 - (20 * 0.2)
   // Tu código:
 
+  producto.calcularPrecioDescuento = function () {
+
+    let  precioConDescuentoIncluido = this.precio - this.precio * this.porcentajeDeDescuento 
+   
+   return precioConDescuentoIncluido;
+  
+  
+  }
+      return producto;
 }
 
 // No modificar nada debajo de esta línea
